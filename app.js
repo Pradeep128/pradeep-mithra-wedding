@@ -28,10 +28,10 @@
   }
 
   const events = [
-    { dd: '20', mon: 'NOV', name: 'Haldi', when: 'Friday · 9:00 AM · Home terrace', tag: 'AM', dress: 'yellow, cotton, washable', blurb: 'Turmeric, laughter, and a great deal of it on your clothes. Come in something you do not love too much.' },
-    { dd: '20', mon: 'NOV', name: 'Mehendi', when: 'Friday · 4:00 PM · Garden lawn', tag: 'PM', dress: 'green & bright florals', blurb: 'Four artists, filter coffee, and enough time to get both hands done before dinner.' },
-    { dd: '21', mon: 'NOV', name: 'Sangeet', when: 'Saturday · 7:00 PM · Grand Ballroom', tag: 'PM', dress: 'cocktail Indian, dancing shoes', blurb: 'The families have been rehearsing separately and competitively. Dinner follows the last performance.' },
-    { dd: '22', mon: 'NOV', name: 'Muhurtham', when: 'Sunday · 10:30 AM · Anandha Inn', tag: 'AM', dress: 'silks and traditional', blurb: 'The ceremony begins promptly at the muhurtham. Please be seated by 10:15. Sadhya lunch to follow.' }
+    { dd: '20', mon: 'NOV', name: 'Haldi', when: 'Friday · 9:00 AM · Home terrace', tag: 'AM', blurb: 'Turmeric, laughter, and a great deal of it on your clothes. Come in something you do not love too much.' },
+    { dd: '20', mon: 'NOV', name: 'Mehendi', when: 'Friday · 4:00 PM · Garden lawn', tag: 'PM', blurb: 'Four artists, filter coffee, and enough time to get both hands done before dinner.' },
+    { dd: '21', mon: 'NOV', name: 'Leisure Day', when: 'Saturday · Free day · Explore Pondicherry', tag: 'DAY', blurb: "A breather between the celebrations — wander the French Quarter, the Promenade, or just sleep in. See Travel for spots we'd recommend." },
+    { dd: '22', mon: 'NOV', name: 'Muhurtham', when: 'Sunday · 10:30 AM · Anandha Inn', tag: 'AM', blurb: 'The ceremony begins promptly at the muhurtham. Please be seated by 10:15. Sadhya lunch to follow.' }
   ];
 
   const travel = [
@@ -40,12 +40,16 @@
     { mode: 'ON THE DAY', title: 'Shuttle from hotels', detail: 'Buses leave both hotels at 9:30 AM on the 22nd.' }
   ];
 
-  const stays = [
-    { name: 'Anandha Inn Suites', note: 'At the venue. Walk downstairs to the mandapam.', rate: 'Wedding rate ₹4,200 · code PM22' },
-    { name: 'Seaside Guest House', note: '1.2 km, on the Promenade.', rate: 'Wedding rate ₹2,800 · code PM22' }
+  const spots = [
+    { name: 'Promenade Beach', note: 'Sea-facing boulevard lined with French-era buildings — best for the evening walk.', tag: '10 min from venue' },
+    { name: 'French Quarter (White Town)', note: 'Mustard-and-bougainvillea streets, quiet cafés, hardly any traffic.', tag: 'Best at golden hour' },
+    { name: 'Auroville', note: 'The Matrimandir and township gardens — worth the early start.', tag: '45 min drive' },
+    { name: 'Sri Aurobindo Ashram', note: "A calm break from the wedding buzz — gardens and a reading room.", tag: '10 min from venue' },
+    { name: 'Cuisine de Pondy', note: 'Biryani spot right by the venue — first stop if you are hungry and haven’t left yet.', tag: '2 min walk from venue' },
+    { name: 'Villa Shanti', note: 'French-Tamil fusion in a restored colonial villa — go for dinner in White Town.', tag: '15 min from venue' }
   ];
 
-  const hotelSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg>HOTEL';
+  const spotSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></svg>SPOT';
 
   const state = {
     tab: 'home',
@@ -141,7 +145,6 @@
           <div class="tl-name">${ev.name}</div>
           <div class="tl-when">${ev.when}</div>
           <div class="tl-blurb">${ev.blurb}</div>
-          <div class="tl-dress">DRESS · ${ev.dress}</div>
         </div>
       </div>
     `).join('');
@@ -159,13 +162,13 @@
       </div>
     `).join('');
 
-    $('#stay-list').innerHTML = stays.map((s, i) => `
+    $('#spot-list').innerHTML = spots.map((s, i) => `
       <div class="stay-item reveal" style="transition-delay:${i * 80}ms">
-        <div class="ph stay-thumb">${hotelSvg}</div>
+        <div class="ph stay-thumb">${spotSvg}</div>
         <div class="stay-body">
           <div class="stay-name">${s.name}</div>
           <div class="stay-note">${s.note}</div>
-          <div class="stay-rate">${s.rate}</div>
+          <div class="stay-rate">${s.tag}</div>
         </div>
       </div>
     `).join('');
