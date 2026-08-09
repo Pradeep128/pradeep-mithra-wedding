@@ -28,8 +28,8 @@
   }
 
   const events = [
-    { dd: '20', mon: 'NOV', name: 'Haldi', when: 'Friday · 11:00 AM · Home terrace', tag: 'AM', blurb: 'Turmeric, laughter, and a great deal of it on your clothes. Come in something you do not love too much.' },
-    { dd: '20', mon: 'NOV', name: 'Mehendi', when: 'Friday · 4:00 PM · La Tharama', tag: 'PM', blurb: 'Four artists, filter coffee, and enough time to get both hands done before dinner.' },
+    { dd: '20', mon: 'NOV', name: 'Haldi', when: 'Friday · 11:00 AM · La Thamara', tag: 'AM', blurb: 'Turmeric, laughter, and a great deal of it on your clothes. Come in something you do not love too much.' },
+    { dd: '20', mon: 'NOV', name: 'Mehendi', when: 'Friday · 4:00 PM · La Thamara', tag: 'PM', blurb: 'Four artists, filter coffee, and enough time to get both hands done before dinner.' },
     { dd: '21', mon: 'NOV', name: 'Leisure Day', when: 'Saturday · Explore Pondicherry', tag: 'DAY', blurb: 'A breather between the celebrations — wander the French Quarter, the Promenade, or just sleep in. See <a href="#" data-goto="travel" data-scroll-to="spot-list" class="inline-link">our spot recommendations</a>.' },
     { dd: '22', mon: 'NOV', name: 'Muhurtham', when: 'Sunday · 06:30 AM · Anandha Inn', tag: 'AM', blurb: 'The ceremony begins promptly at the muhurtham. Please be seated by 06:30. Breakfast and lunch to follow.' }
   ];
