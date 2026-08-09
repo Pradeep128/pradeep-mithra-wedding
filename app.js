@@ -36,20 +36,49 @@
 
   const travel = [
     { mode: 'BY AIR', title: 'Chennai (MAA) — 150 km', detail: 'Pre-booked cabs run 3 hrs door to door.' },
-    { mode: 'BY TRAIN', title: 'Puducherry station — 3 km', detail: 'Villupuram junction is the bigger railhead, 40 min away by road.' },
-    { mode: 'ON THE DAY', title: 'Shuttle from hotels', detail: 'Buses leave both hotels at 9:30 AM on the 22nd.' }
+    { mode: 'BY TRAIN', title: 'Puducherry station — 3 km', detail: 'Villupuram junction is the bigger railhead, 40 min away by road.' }
   ];
 
-  const spots = [
+  const stays = [
+    { name: 'La Tamara Luxury', note: 'TIE Hotels & Resorts — also hosts the Haldi and Mehendi.', tag: 'View on Maps', link: 'https://maps.app.goo.gl/2xyLPWwrmSTbwii89' }
+  ];
+
+  const staySvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg>STAY';
+
+  const spotsVisit = [
     { name: 'Promenade Beach', note: 'Sea-facing boulevard lined with French-era buildings — best for the evening walk.', tag: '10 min from venue' },
     { name: 'French Quarter (White Town)', note: 'Mustard-and-bougainvillea streets, quiet cafés, hardly any traffic.', tag: 'Best at golden hour' },
-    { name: 'Auroville', note: 'The Matrimandir and township gardens — worth the early start.', tag: '45 min drive' },
+    { name: 'Auroville', note: 'The Matrimandir and township gardens — worth the early start.', tag: '~40 min drive' },
     { name: 'Sri Aurobindo Ashram', note: "A calm break from the wedding buzz — gardens and a reading room.", tag: '10 min from venue' },
-    { name: 'Cuisine de Pondy', note: 'Biryani spot right by the venue — first stop if you are hungry and haven’t left yet.', tag: '2 min walk from venue' },
-    { name: 'Villa Shanti', note: 'French-Tamil fusion in a restored colonial villa — go for dinner in White Town.', tag: '15 min from venue' }
+    { name: 'Matrimandir', note: "Auroville's golden meditation chamber — viewing needs a booked slot, arrive early.", tag: '~40 min drive', link: 'https://www.google.com/maps/search/?api=1&query=Matrimandir%2C+Auroville%2C+Puducherry' },
+    { name: 'Pichavaram Mangrove Forest', note: 'Boat through the world’s second-largest mangrove forest.', tag: '~1.5 hr drive', link: 'https://www.google.com/maps/search/?api=1&query=Pichavaram+Mangrove+Forest' },
+    { name: 'Arikamedu Ruins', note: 'Quiet ruins of an ancient Indo-Roman trading port.', tag: '~20 min drive', link: 'https://www.google.com/maps/search/?api=1&query=Arikamedu%2C+Puducherry' },
+    { name: 'Arulmigu Manakula Vinayagar Temple', note: "Pondicherry's best-loved Ganesha temple, right in White Town.", tag: '10 min from venue', link: 'https://www.google.com/maps/search/?api=1&query=Arulmigu+Manakula+Vinayagar+Temple%2C+Puducherry' },
+    { name: 'Pondy Ocean Park', note: 'Water park and rides on the East Coast Road — a fun half-day out.', tag: '~1 hr drive', link: 'https://www.google.com/maps/search/?api=1&query=Pondy+Ocean+Park' },
+    { name: 'Paradise Beach', note: 'Golden sand reached by a short boat ride from Chunnambar.', tag: '~20 min + boat', link: 'https://www.google.com/maps/search/?api=1&query=Paradise+Beach%2C+Puducherry' },
+    { name: 'Rock Beach', note: 'The rocky stretch of the Promenade by the war memorial.', tag: '10 min from venue', link: 'https://www.google.com/maps/search/?api=1&query=Rock+Beach%2C+Puducherry' },
+    { name: 'Serenity Beach', note: 'Surf, cafés, and a quieter shoreline north of town.', tag: '~25 min drive', link: 'https://www.google.com/maps/search/?api=1&query=Serenity+Beach%2C+Puducherry' },
+    { name: 'Eden Beach', note: 'A calmer backwater-side beach near Chunnambar.', tag: '~20 min + boat', link: 'https://www.google.com/maps/search/?api=1&query=Eden+Beach%2C+Puducherry' }
+  ];
+
+  const spotsEat = [
+    { name: 'Cuisine de Pondy', note: 'Biryani spot right by the venue — first stop if you are hungry and haven’t left yet.', tag: '2 min walk from venue', link: 'https://www.google.com/maps/search/?api=1&query=Cuisine+de+Pondy%2C+Puducherry' },
+    { name: 'Villa Shanti', note: 'French-Tamil fusion in a restored colonial villa — go for dinner in White Town.', tag: '~10 min from venue', link: 'https://www.google.com/maps/search/?api=1&query=Villa+Shanti%2C+Puducherry' },
+    { name: 'Coromandel Cafe', note: 'Heritage-building café in White Town, popular for weekend brunch.', tag: '~10 min from venue', link: 'https://www.google.com/maps/search/?api=1&query=Coromandel+Cafe%2C+Puducherry' },
+    { name: 'Surguru', note: 'Reliable South Indian vegetarian — good for a filter coffee and dosa fix.', tag: '~10 min from venue', link: 'https://www.google.com/maps/search/?api=1&query=Surguru%2C+Puducherry' },
+    { name: 'Cafe Xtasi', note: 'Rooftop seating and continental plates in the French Quarter.', tag: '~10 min from venue', link: 'https://www.google.com/maps/search/?api=1&query=Cafe+Xtasi%2C+Puducherry' },
+    { name: 'Baker’s Street', note: 'French bakery chain — croissants and pastries worth the stop.', tag: '~10 min from venue', link: 'https://www.google.com/maps/search/?api=1&query=Bakers+Street%2C+Puducherry' },
+    { name: 'GMT Gelato', note: 'Small-batch gelato, a favourite after a Promenade walk.', tag: '~10 min from venue', link: 'https://www.google.com/maps/search/?api=1&query=GMT+Gelato%2C+Puducherry' },
+    { name: 'Sicily’s', note: 'Casual Italian-leaning menu in White Town.', tag: '~10 min from venue', link: 'https://www.google.com/maps/search/?api=1&query=Sicilys%2C+Puducherry' },
+    { name: 'Blueline', note: 'Laid-back spot for a relaxed meal in town.', tag: '~10 min from venue', link: 'https://www.google.com/maps/search/?api=1&query=Blueline%2C+Puducherry' },
+    { name: 'Zuka', note: 'Local chocolate café — good for dessert or a coffee break.', tag: '~10 min from venue', link: 'https://www.google.com/maps/search/?api=1&query=Zuka+Chocolate%2C+Puducherry' },
+    { name: 'Cafe Des Arts', note: 'Garden courtyard café, a favourite brunch spot in White Town.', tag: '~10 min from venue', link: 'https://www.google.com/maps/search/?api=1&query=Cafe+Des+Arts%2C+Puducherry' },
+    { name: 'Bread and Chocolate', note: 'French bakery-café known for fresh croissants and quiches — go early before things sell out.', tag: '~10 min from venue', link: 'https://www.google.com/maps/search/?api=1&query=Bread+and+Chocolate%2C+Puducherry' }
   ];
 
   const spotSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></svg>SPOT';
+  const eatSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 3v7a2 2 0 0 0 2 2v9M6 3v9M9 3v9M15 3c-1.5 0-2 2-2 4s.5 4 2 4v10M15 3v18"/></svg>EAT';
+  let spotView = 'visit';
 
   const state = {
     tab: 'home',
@@ -162,16 +191,18 @@
       </div>
     `).join('');
 
-    $('#spot-list').innerHTML = spots.map((s, i) => `
-      <div class="stay-item reveal" style="transition-delay:${i * 80}ms">
-        <div class="ph stay-thumb">${spotSvg}</div>
+    $('#stay-list').innerHTML = stays.map((s, i) => `
+      <a class="stay-item reveal" style="transition-delay:${i * 80}ms" href="${s.link}" target="_blank" rel="noopener">
+        <div class="ph stay-thumb">${staySvg}</div>
         <div class="stay-body">
           <div class="stay-name">${s.name}</div>
           <div class="stay-note">${s.note}</div>
           <div class="stay-rate">${s.tag}</div>
         </div>
-      </div>
+      </a>
     `).join('');
+
+    renderSpots();
 
     $('#directions-link').href = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(VENUE_ADDRESS);
     const callLink = $('#call-link');
@@ -182,6 +213,37 @@
       callLink.style.opacity = '.5';
       callLink.style.cursor = 'default';
     }
+  }
+
+  function renderSpots() {
+    const list = spotView === 'visit' ? spotsVisit : spotsEat;
+    const icon = spotView === 'visit' ? spotSvg : eatSvg;
+    document.querySelectorAll('#spot-segment .segment-btn').forEach((btn) => {
+      btn.classList.toggle('active', btn.dataset.spotView === spotView);
+    });
+    $('#spot-list').innerHTML = list.map((s, i) => {
+      const tag = s.link ? 'a' : 'div';
+      const linkAttrs = s.link ? `href="${s.link}" target="_blank" rel="noopener"` : '';
+      return `
+      <${tag} class="stay-item item-in" style="animation-delay:${i * 60}ms" ${linkAttrs}>
+        <div class="ph stay-thumb">${icon}</div>
+        <div class="stay-body">
+          <div class="stay-name">${s.name}</div>
+          <div class="stay-note">${s.note}</div>
+          <div class="stay-rate">${s.tag}</div>
+        </div>
+      </${tag}>
+    `;
+    }).join('');
+  }
+
+  function bindSpotSegment() {
+    $('#spot-segment').addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-spot-view]');
+      if (!btn) return;
+      spotView = btn.dataset.spotView;
+      renderSpots();
+    });
   }
 
   // ---------- RSVP ----------
@@ -264,6 +326,7 @@
     renderTravel();
     renderRsvp();
     bindRsvp();
+    bindSpotSegment();
     bindNav();
     renderTabs();
     initReveal();

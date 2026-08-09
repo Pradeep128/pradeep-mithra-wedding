@@ -36,10 +36,11 @@ button:active,.tab-btn:active,.celeb-item:active,.btn-gold:active,.choice-btn:ac
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
 .reveal.is-visible{opacity:1;transform:translateY(0)}
 /* elements that are both interactive (press/hover transitions) and reveal-on-scroll need one merged transition list */
-.celeb-item.reveal,.share-box.reveal{
+.celeb-item.reveal,.share-box.reveal,.stay-item.reveal{
   transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .4s cubic-bezier(.22,.61,.36,1),
     background-color .25s ease,border-color .25s ease,box-shadow .25s ease
 }
+.stay-item:active{transform:scale(.97)}
 
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
@@ -259,6 +260,16 @@ button:active,.tab-btn:active,.celeb-item:active,.btn-gold:active,.choice-btn:ac
 .travel-mode{width:64px;flex:none;font-size:10px;letter-spacing:.12em;color:var(--terracotta);padding-top:3px}
 .travel-title{font-size:13px;color:var(--ink)}
 .travel-detail{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.5}
+
+.segment{display:flex;background:var(--panel);border-radius:999px;padding:4px;gap:4px;margin-top:14px}
+.segment-btn{flex:1;text-align:center;padding:10px;border-radius:999px;font-size:12px;letter-spacing:.08em;color:var(--muted);transition:background-color .25s ease,color .25s ease}
+.segment-btn.active{background:var(--primary);color:var(--card)}
+
+@keyframes item-in{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.item-in{animation:item-in .45s cubic-bezier(.22,.61,.36,1) both}
 
 .stay-list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
 .stay-item{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
