@@ -21,9 +21,7 @@
     fd.append(RSVP_ENTRY.attending, state.attending === 'yes' ? 'Yes' : 'No');
     fd.append(RSVP_ENTRY.guests, state.attending === 'yes' ? String(state.guests) : '0');
     if (state.attending === 'yes') {
-      events.forEach((ev) => {
-        if (state.picked[ev.name]) fd.append(RSVP_ENTRY.events, ev.name);
-      });
+      events.forEach((ev) => fd.append(RSVP_ENTRY.events, ev.name));
     }
     fd.append(RSVP_ENTRY.notes, state.note.trim());
     fetch(RSVP_FORM_URL, { method: 'POST', mode: 'no-cors', body: fd }).catch(() => {});
@@ -37,7 +35,7 @@
   ];
 
   const travel = [
-    { mode: 'BY AIR', title: 'Chennai (MAA) — 150 km', detail: 'Pre-booked cabs run 3 hrs door to door. Tell us your flight and we will arrange a pickup.' },
+    { mode: 'BY AIR', title: 'Chennai (MAA) — 150 km', detail: 'Pre-booked cabs run 3 hrs door to door.' },
     { mode: 'BY TRAIN', title: 'Puducherry station — 3 km', detail: 'Villupuram junction is the bigger railhead, 40 min away by road.' },
     { mode: 'ON THE DAY', title: 'Shuttle from hotels', detail: 'Buses leave both hotels at 9:30 AM on the 22nd.' }
   ];
@@ -54,7 +52,6 @@
     name: '',
     attending: null,
     guests: 2,
-    picked: {},
     note: '',
     sent: false
   };
@@ -170,10 +167,6 @@
 
     $('#guest-count').textContent = state.guests;
 
-    $('#event-chips').innerHTML = events.map((ev) => `
-      <button class="chip${state.picked[ev.name] ? ' active' : ''}" data-chip="${ev.name}" type="button">${ev.name}</button>
-    `).join('');
-
     const submitBtn = $('#rsvp-submit');
     submitBtn.classList.toggle('ready', ready);
     submitBtn.disabled = !ready;
@@ -203,13 +196,6 @@
     $('#rsvp-no').addEventListener('click', () => { state.attending = 'no'; renderRsvp(); });
     $('#guest-inc').addEventListener('click', () => { state.guests = Math.min(9, state.guests + 1); renderRsvp(); });
     $('#guest-dec').addEventListener('click', () => { state.guests = Math.max(1, state.guests - 1); renderRsvp(); });
-    $('#event-chips').addEventListener('click', (e) => {
-      const chip = e.target.closest('[data-chip]');
-      if (!chip) return;
-      const name = chip.dataset.chip;
-      state.picked[name] = !state.picked[name];
-      renderRsvp();
-    });
     $('#rsvp-note').addEventListener('input', (e) => { state.note = e.target.value; });
     $('#rsvp-submit').addEventListener('click', () => {
       if (state.name.trim().length > 1 && state.attending !== null) {
