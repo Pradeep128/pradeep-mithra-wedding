@@ -4,6 +4,30 @@
   const WEDDING_DATE = new Date('2026-11-22T10:30:00+05:30').getTime();
   const VENUE_ADDRESS = 'Anandha Inn, Sardar Vallabhbhai Patel Salai, Puducherry 605001';
   const VENUE_PHONE = '';
+  const PHOTOS_ALBUM_URL = 'https://photos.app.goo.gl/46vf5GNqiQpgyJJJ8';
+
+  const RSVP_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeMmBYoA7tV-4Ei8VVz_lxfeEpiFuOSB6KzxsmBddifxaRsrw/formResponse';
+  const RSVP_ENTRY = {
+    name: 'entry.1663616517',
+    attending: 'entry.1768421477',
+    guests: 'entry.1093209292',
+    events: 'entry.997150284',
+    notes: 'entry.1185465696'
+  };
+
+  function submitRsvpToGoogleForm() {
+    const fd = new FormData();
+    fd.append(RSVP_ENTRY.name, state.name.trim());
+    fd.append(RSVP_ENTRY.attending, state.attending === 'yes' ? 'Yes' : 'No');
+    fd.append(RSVP_ENTRY.guests, state.attending === 'yes' ? String(state.guests) : '0');
+    if (state.attending === 'yes') {
+      events.forEach((ev) => {
+        if (state.picked[ev.name]) fd.append(RSVP_ENTRY.events, ev.name);
+      });
+    }
+    fd.append(RSVP_ENTRY.notes, state.note.trim());
+    fetch(RSVP_FORM_URL, { method: 'POST', mode: 'no-cors', body: fd }).catch(() => {});
+  }
 
   const events = [
     { dd: '20', mon: 'NOV', name: 'Haldi', when: 'Friday · 9:00 AM · Home terrace', tag: 'AM', dress: 'yellow, cotton, washable', blurb: 'Turmeric, laughter, and a great deal of it on your clothes. Come in something you do not love too much.' },
@@ -189,6 +213,7 @@
     $('#rsvp-note').addEventListener('input', (e) => { state.note = e.target.value; });
     $('#rsvp-submit').addEventListener('click', () => {
       if (state.name.trim().length > 1 && state.attending !== null) {
+        submitRsvpToGoogleForm();
         state.sent = true;
         renderRsvp();
         $('#screens').scrollTop = 0;
@@ -209,6 +234,7 @@
 
   // ---------- Init ----------
   function init() {
+    $('#photos-album-link').href = PHOTOS_ALBUM_URL;
     renderCelebList();
     renderItinerary();
     renderTravel();

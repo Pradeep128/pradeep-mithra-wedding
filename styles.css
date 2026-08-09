@@ -183,7 +183,7 @@ input,textarea{font-family:inherit}
 .gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px}
 .gallery-tall{height:200px;border-radius:12px;grid-row:span 2}
 .gallery-short{height:96px;border-radius:12px}
-.share-box{margin-top:18px;border:1px dashed rgba(51,32,61,.25);border-radius:14px;padding:20px;text-align:center}
+.share-box{display:block;margin-top:18px;border:1px dashed rgba(51,32,61,.25);border-radius:14px;padding:20px;text-align:center;cursor:pointer}
 .share-title{font-family:Marcellus,serif;font-size:16px;color:var(--ink)}
 .share-note{font-size:11px;color:var(--muted);margin-top:6px}
 
