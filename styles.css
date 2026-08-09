@@ -206,6 +206,8 @@ button:active,.tab-btn:active,.celeb-item:active,.btn-gold:active,.choice-btn:ac
 .tl-name{font-family:Marcellus,serif;font-size:21px;color:var(--ink)}
 .tl-when{font-size:11px;letter-spacing:.12em;color:var(--green);margin-top:4px}
 .tl-blurb{font-size:12px;color:var(--muted-2);line-height:1.65;margin-top:8px}
+.inline-link{color:var(--green);border-bottom:1px solid var(--green);padding-bottom:1px;transition:opacity .2s ease}
+.inline-link:active{opacity:.6}
 
 /* ---------- RSVP ---------- */
 .field-label{font-size:10px;letter-spacing:.18em;color:var(--muted);margin:26px 0 8px}

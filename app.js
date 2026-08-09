@@ -28,10 +28,10 @@
   }
 
   const events = [
-    { dd: '20', mon: 'NOV', name: 'Haldi', when: 'Friday · 9:00 AM · Home terrace', tag: 'AM', blurb: 'Turmeric, laughter, and a great deal of it on your clothes. Come in something you do not love too much.' },
-    { dd: '20', mon: 'NOV', name: 'Mehendi', when: 'Friday · 4:00 PM · Garden lawn', tag: 'PM', blurb: 'Four artists, filter coffee, and enough time to get both hands done before dinner.' },
-    { dd: '21', mon: 'NOV', name: 'Leisure Day', when: 'Saturday · Free day · Explore Pondicherry', tag: 'DAY', blurb: "A breather between the celebrations — wander the French Quarter, the Promenade, or just sleep in. See Travel for spots we'd recommend." },
-    { dd: '22', mon: 'NOV', name: 'Muhurtham', when: 'Sunday · 10:30 AM · Anandha Inn', tag: 'AM', blurb: 'The ceremony begins promptly at the muhurtham. Please be seated by 10:15. Sadhya lunch to follow.' }
+    { dd: '20', mon: 'NOV', name: 'Haldi', when: 'Friday · 11:00 AM · Home terrace', tag: 'AM', blurb: 'Turmeric, laughter, and a great deal of it on your clothes. Come in something you do not love too much.' },
+    { dd: '20', mon: 'NOV', name: 'Mehendi', when: 'Friday · 4:00 PM · La Tharama', tag: 'PM', blurb: 'Four artists, filter coffee, and enough time to get both hands done before dinner.' },
+    { dd: '21', mon: 'NOV', name: 'Leisure Day', when: 'Saturday · Explore Pondicherry', tag: 'DAY', blurb: 'A breather between the celebrations — wander the French Quarter, the Promenade, or just sleep in. See <a href="#" data-goto="travel" data-scroll-to="spot-list" class="inline-link">our spot recommendations</a>.' },
+    { dd: '22', mon: 'NOV', name: 'Muhurtham', when: 'Sunday · 06:30 AM · Anandha Inn', tag: 'AM', blurb: 'The ceremony begins promptly at the muhurtham. Please be seated by 06:30. Breakfast and lunch to follow.' }
   ];
 
   const travel = [
@@ -200,7 +200,7 @@
     submitBtn.classList.toggle('ready', ready);
     submitBtn.disabled = !ready;
     $('#submit-hint').textContent = ready
-      ? 'You can change this any time before 15 October.'
+      ? 'You can change this any time before 25 October.'
       : 'Add your name and let us know if you can make it.';
 
     const showThanks = state.sent;
@@ -240,7 +240,17 @@
   function bindNav() {
     document.addEventListener('click', (e) => {
       const goBtn = e.target.closest('[data-goto]');
-      if (goBtn) goTab(goBtn.dataset.goto);
+      if (goBtn) {
+        e.preventDefault();
+        goTab(goBtn.dataset.goto);
+        const scrollToId = goBtn.dataset.scrollTo;
+        if (scrollToId) {
+          requestAnimationFrame(() => {
+            const target = document.getElementById(scrollToId);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        }
+      }
       const tabBtn = e.target.closest('.tab-btn');
       if (tabBtn) goTab(tabBtn.dataset.tab);
     });
