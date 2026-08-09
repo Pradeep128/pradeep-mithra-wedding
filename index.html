@@ -18,6 +18,11 @@
     <!-- HOME -->
     <section id="screen-home" class="screen">
       <div class="hero">
+        <span class="spark spark-1"></span>
+        <span class="spark spark-2"></span>
+        <span class="spark spark-3"></span>
+        <span class="spark spark-4"></span>
+        <span class="spark spark-5"></span>
         <div class="hero-mantra">॥ श्री गणेशाय नमः ॥</div>
         <div class="hero-kicker">WE ♡ DO</div>
         <div class="hero-name">Pradeep</div>
@@ -29,7 +34,7 @@
         <div class="hero-dots"></div>
       </div>
 
-      <div class="countdown">
+      <div class="countdown reveal">
         <div class="countdown-label">THE COUNTDOWN</div>
         <div class="countdown-sub">To forever has begun…</div>
         <div class="countdown-grid">
@@ -40,11 +45,13 @@
         </div>
       </div>
 
-      <div class="photo-slot">
-        <img class="hero-photo" src="photos/hero.jpg" alt="Pradeep and Mithra">
+      <div class="photo-slot reveal">
+        <div class="photo-frame">
+          <img class="hero-photo" src="photos/hero.jpg" alt="Pradeep and Mithra">
+        </div>
       </div>
 
-      <div class="section">
+      <div class="section reveal">
         <div class="section-head">
           <div class="section-title">The celebrations</div>
           <button class="link-btn" data-goto="events">ALL →</button>
@@ -52,7 +59,7 @@
         <div class="celeb-list" id="celeb-list"></div>
       </div>
 
-      <div class="cta-panel cta-panel-last">
+      <div class="cta-panel cta-panel-last reveal">
         <div class="cta-title">We can't wait to celebrate with you</div>
         <div class="cta-body">Kindly let us know by 25 October so we can keep a seat, and a plate of payasam, ready.</div>
         <button class="btn-gold" data-goto="rsvp">RSVP</button>
@@ -76,7 +83,6 @@
           <div class="check-circle">✓</div>
           <div class="thanks-title">Thank you, <span id="thanks-name">friend</span></div>
           <div class="thanks-body" id="thanks-body"></div>
-          <button class="edit-link" id="edit-rsvp">EDIT MY RSVP</button>
         </div>
 
         <div id="rsvp-form">
@@ -116,12 +122,12 @@
       <div class="page-pad">
         <h1 class="page-title">Travel &amp; stay</h1>
 
-        <div class="ph" style="height:170px;border-radius:16px;margin-top:18px">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
-          MAP — Anandha Inn, Puducherry
-        </div>
+        <a class="map-frame reveal" href="https://www.google.com/maps/dir/?api=1&amp;destination=Anandha%20Inn%2C%20Sardar%20Vallabhbhai%20Patel%20Salai%2C%20Puducherry%20605001" target="_blank" rel="noopener">
+          <img class="map-photo" src="photos/venue-map.jpg" alt="Map showing Anandha Inn, Puducherry">
+          <span class="map-badge">OPEN IN MAPS →</span>
+        </a>
 
-        <div class="venue-card">
+        <div class="venue-card reveal">
           <div class="venue-name">Anandha Inn</div>
           <div class="venue-addr">Convention Centre &amp; Suites<br>Sardar Vallabhbhai Patel Salai, Puducherry 605001</div>
           <div class="venue-actions">
@@ -130,10 +136,10 @@
           </div>
         </div>
 
-        <h2 class="sub-title">Getting there</h2>
+        <h2 class="sub-title reveal">Getting there</h2>
         <div class="travel-list" id="travel-list"></div>
 
-        <h2 class="sub-title">Where to stay</h2>
+        <h2 class="sub-title reveal">Where to stay</h2>
         <div class="stay-list" id="stay-list"></div>
       </div>
     </section>
@@ -144,10 +150,10 @@
         <h1 class="page-title">Gallery</h1>
         <div class="page-sub">Something old, something new. Add yours after the 22nd.</div>
         <div class="gallery-grid">
-          <img class="gallery-photo" src="photos/gallery-rooftop.jpg" alt="Pradeep and Mithra on a rooftop">
-          <img class="gallery-photo" src="photos/gallery-petcafe.jpg" alt="Pradeep and Mithra at a pet cafe">
+          <div class="photo-frame reveal"><img class="gallery-photo" src="photos/gallery-rooftop.jpg" alt="Pradeep and Mithra on a rooftop"></div>
+          <div class="photo-frame reveal"><img class="gallery-photo" src="photos/gallery-petcafe.jpg" alt="Pradeep and Mithra at a pet cafe"></div>
         </div>
-        <a class="share-box" id="photos-album-link" target="_blank" rel="noopener">
+        <a class="share-box reveal" id="photos-album-link" target="_blank" rel="noopener">
           <div class="share-title">Share your photos</div>
           <div class="share-note">Everything guests upload lands here, in one album.</div>
         </a>

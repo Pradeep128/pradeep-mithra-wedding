@@ -60,6 +60,7 @@
   const pad = (n) => String(n).padStart(2, '0');
 
   // ---------- Countdown ----------
+  let lastSecond = null;
   function tickCountdown() {
     const diff = Math.max(0, WEDDING_DATE - Date.now());
     const d = Math.floor(diff / 864e5);
@@ -70,6 +71,31 @@
     $('#cd-h').textContent = pad(h);
     $('#cd-m').textContent = pad(m);
     $('#cd-s').textContent = pad(s);
+    if (s !== lastSecond) {
+      lastSecond = s;
+      const secEl = $('#cd-s');
+      secEl.classList.remove('tick');
+      void secEl.offsetWidth;
+      secEl.classList.add('tick');
+    }
+  }
+
+  // ---------- Scroll reveal ----------
+  function initReveal() {
+    const targets = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { root: $('#screens'), threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    targets.forEach((el) => observer.observe(el));
   }
 
   // ---------- Tabs ----------
@@ -92,8 +118,8 @@
   // ---------- Home: celebrations list ----------
   function renderCelebList() {
     const list = $('#celeb-list');
-    list.innerHTML = events.map((ev) => `
-      <button class="celeb-item" data-goto="events" type="button">
+    list.innerHTML = events.map((ev, i) => `
+      <button class="celeb-item reveal" style="transition-delay:${i * 70}ms" data-goto="events" type="button">
         <span class="celeb-dd">${ev.dd}</span>
         <span class="celeb-body">
           <span class="celeb-name">${ev.name}</span>
@@ -107,8 +133,8 @@
   // ---------- Events: itinerary ----------
   function renderItinerary() {
     const list = $('#itinerary-list');
-    list.innerHTML = events.map((ev) => `
-      <div class="tl-item">
+    list.innerHTML = events.map((ev, i) => `
+      <div class="tl-item reveal" style="transition-delay:${i * 90}ms">
         <div class="tl-date"><div class="tl-dd">${ev.dd}</div><div class="tl-mon">${ev.mon}</div></div>
         <div class="tl-rail"></div>
         <div class="tl-body">
@@ -123,8 +149,8 @@
 
   // ---------- Travel ----------
   function renderTravel() {
-    $('#travel-list').innerHTML = travel.map((t) => `
-      <div class="travel-item">
+    $('#travel-list').innerHTML = travel.map((t, i) => `
+      <div class="travel-item reveal" style="transition-delay:${i * 80}ms">
         <div class="travel-mode">${t.mode}</div>
         <div>
           <div class="travel-title">${t.title}</div>
@@ -133,8 +159,8 @@
       </div>
     `).join('');
 
-    $('#stay-list').innerHTML = stays.map((s) => `
-      <div class="stay-item">
+    $('#stay-list').innerHTML = stays.map((s, i) => `
+      <div class="stay-item reveal" style="transition-delay:${i * 80}ms">
         <div class="ph stay-thumb">${hotelSvg}</div>
         <div class="stay-body">
           <div class="stay-name">${s.name}</div>
@@ -205,7 +231,6 @@
         $('#screens').scrollTop = 0;
       }
     });
-    $('#edit-rsvp').addEventListener('click', () => { state.sent = false; renderRsvp(); });
   }
 
   // ---------- Global nav clicks ----------
@@ -228,6 +253,7 @@
     bindRsvp();
     bindNav();
     renderTabs();
+    initReveal();
     tickCountdown();
     setInterval(tickCountdown, 1000);
   }
